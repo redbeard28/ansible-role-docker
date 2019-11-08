@@ -1,0 +1,8 @@
+---
+file:
+  /etc/telegraf/telegraf.conf:
+    # required attributes
+    exists: true
+  /etc/telegraf/telegraf.d/system.conf:
+    # required attributes
+    exists: true
