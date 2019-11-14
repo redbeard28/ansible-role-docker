@@ -7,7 +7,7 @@
     recurse: yes
   with_items:
     - "/etc/systemd/system/docker.service.d"
-    - "{{ ansible_env.PWD }}/.docker/config.json"
+    - "{{ ansible_env.PWD }}/.docker"
 
 - name: "Install daemon proxy config"
   become: yes
