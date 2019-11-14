@@ -1,12 +1,21 @@
 ---
+
+#- name: "Customize YUM PROXY"
+#  become: true
+#  lineinfile: dest=/etc/yum.conf state=present regexp="{{ PROXY_URL }}"
+#              insertafter=EOF line="proxy={{ PROXY_URL }}"
+#  when: {{ PROXY_URL | length>0 }}
+
 - include_tasks: setup-RedHat.yml
 
-
-- name: Install Docker.
+- name: "Install Docker"
   package:
     name: "{{ docker_package }}"
     state: "{{ docker_package_state }}"
   notify: restart docker
+
+- include_tasks: docker_proxy_config.yml
+  when: "{{ PROXY_URL | length>0 }}"
 
 - name: Ensure Docker is started and enabled at boot.
   service:
@@ -16,6 +25,8 @@
 
 - name: Ensure handlers are notified now to avoid firewall conflicts.
   meta: flush_handlers
+
+- include_tasks: ansible_module.yml
 
 - include_tasks: docker-compose.yml
   when: docker_install_compose | bool

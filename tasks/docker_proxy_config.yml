@@ -1,0 +1,26 @@
+---
+- name: "Creates daemon CONFIG directory"
+  become: yes
+  file:
+    path: "{{ item }}"
+    state: directory
+    recurse: yes
+  with_items:
+    - "/etc/systemd/system/docker.service.d"
+
+- name: "Install daemon proxy config"
+  become: yes
+  template:
+    src: "https-proxy.conf.j2"
+    dest: "/etc/systemd/system/docker.service.d/https-proxy.conf"
+    owner: root
+    group: root
+    mode: '0644'
+
+- name: "Install docker client proxy and registry config"
+  template:
+    src: "config.json.j2"
+    dest: "{{ ansible_env.PWD }}/.docker/config.json"
+  when: "{{ CONFIGURE_DOCKER_REGISTRY | bool }}"
+
+

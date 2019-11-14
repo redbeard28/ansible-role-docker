@@ -1,4 +1,13 @@
 ---
+# Proxy settings
+PROXY_URL: ''
+NO_PROXY_DOMAIN: ''
+
+# Docker registry
+DOCKER_REGISTRY: "{{ vault_docker_registry }}"
+DOCKER_REGISTRY_TOKEN: "{{ vault_docker_registry_token }}"
+CONFIGURE_DOCKER_REGISTRY: false
+
 # Edition can be one of: 'ce' (Community Edition) or 'ee' (Enterprise Edition).
 docker_edition: 'ce'
 docker_package: "docker-{{ docker_edition }}"
@@ -11,6 +20,7 @@ docker_restart_handler_state: restarted
 
 # Docker Compose options.
 docker_install_compose: true
+## https://github.com/docker/compose/releases
 docker_compose_version: "1.24.1"
 docker_compose_path: /usr/local/bin/docker-compose
 
