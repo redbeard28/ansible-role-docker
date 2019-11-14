@@ -4,9 +4,7 @@ redbeard28.docker
 This role contains
 tasks used to install and set up a docker minimal install for:
 
-   - debian (dev in progress)
-   - centos (not yet tested)
-   - redhat (not yet tested)
+   - centos 7 (CentOS Linux release 7.7.1908 (Core))
 
 
 
@@ -48,10 +46,53 @@ become=true
 ````
 
 
+## Docker registry
+You can config docker login auth with $home/.docker.config.json
+juste config like this:
+```yaml
+# Docker registry
+DOCKER_REGISTRY: "{{ vault_docker_registry }}"
+DOCKER_REGISTRY_TOKEN: "{{ vault_docker_registry_token }}"
+CONFIGURE_DOCKER_REGISTRY: false
+```
+
+## Auto proxy config
+
+if **PROXY_URL** is set, then tasks in docker_proxy_config.yml will be applied.
+
+## docker-compose verison
+
+You can choose docker-compose version to install
+```yaml
+docker_compose_version: "1.24.1"
+```
+
+## docker users authorized to play with docker daemon
+# A list of users who will be added to the docker group.
+```yaml
+docker_users: []
+```
+
+### Exemple
+```yaml
+docker_users: 
+  - bigdaddy
+  - otheruser
+```
+
 
 Role Variables
 --------------
 ```yaml
+# Proxy settings
+PROXY_URL: ''
+NO_PROXY_DOMAIN: ''
+
+# Docker registry
+DOCKER_REGISTRY: "{{ vault_docker_registry }}"
+DOCKER_REGISTRY_TOKEN: "{{ vault_docker_registry_token }}"
+CONFIGURE_DOCKER_REGISTRY: false
+
 # Edition can be one of: 'ce' (Community Edition) or 'ee' (Enterprise Edition).
 docker_edition: 'ce'
 docker_package: "docker-{{ docker_edition }}"
@@ -64,6 +105,7 @@ docker_restart_handler_state: restarted
 
 # Docker Compose options.
 docker_install_compose: true
+## https://github.com/docker/compose/releases
 docker_compose_version: "1.24.1"
 docker_compose_path: /usr/local/bin/docker-compose
 
@@ -83,6 +125,21 @@ docker_users: []
 ````
 
 ----
+
+## vault file
+Please use a vault file to insert some critical vars
+
+```bash
+ansible-vault create/edit secrets/{{ env }}.secret
+```
+
+### Vault file exemple
+```ignorelang
+vault_docker_registry: "docker-registry.mydomain.com"
+vault_docker_registry_token: "XXXXXXXXYYYYYYYYYYYYYYXXXXXXXXXX"
+
+```
+
 
 Dependencies
 ------------

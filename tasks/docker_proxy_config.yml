@@ -7,6 +7,7 @@
     recurse: yes
   with_items:
     - "/etc/systemd/system/docker.service.d"
+    - "{{ ansible_env.PWD }}/.docker/config.json"
 
 - name: "Install daemon proxy config"
   become: yes
@@ -22,5 +23,5 @@
     src: "config.json.j2"
     dest: "{{ ansible_env.PWD }}/.docker/config.json"
   when: "{{ CONFIGURE_DOCKER_REGISTRY | bool }}"
-
+  notify: full_docker_flush
 
