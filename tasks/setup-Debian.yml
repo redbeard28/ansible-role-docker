@@ -28,7 +28,7 @@
   package: name=curl state=present
   when: add_repository_key is failed
 
-  - name: "{{ ansible_distribution | lower }} | {{ ansible_distribution_release }} - Add Docker apt key (alternative for older systems without SNI)."
+- name: "{{ ansible_distribution | lower }} | {{ ansible_distribution_release }} - Add Docker apt key (alternative for older systems without SNI)."
   shell: |
     set -o pipefail
     curl -sSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
