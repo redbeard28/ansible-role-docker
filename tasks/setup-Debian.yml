@@ -1,5 +1,5 @@
 ---
-- name: - name: "{{ ansible_distribution | lower }} | {{ ansible_distribution_release }} - Ensure old versions of Docker are not installed."
+- name: "{{ ansible_distribution | lower }} | {{ ansible_distribution_release }} - Ensure old versions of Docker are not installed."
   package:
     name:
       - docker
