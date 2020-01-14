@@ -24,7 +24,7 @@
   register: add_repository_key
   ignore_errors: "{{ docker_apt_ignore_key_error }}"
 
--- name: "{{ ansible_distribution | lower }} | {{ ansible_distribution_release }} - Ensure curl is present (on older systems without SNI)."
+- name: "{{ ansible_distribution | lower }} | {{ ansible_distribution_release }} - Ensure curl is present (on older systems without SNI)."
   package: name=curl state=present
   when: add_repository_key is failed
 
