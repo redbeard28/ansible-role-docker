@@ -1,10 +1,11 @@
-redbeard28.docker
+ansible-role-docker
 =========
 
 This role contains
 tasks used to install and set up a docker minimal install for:
 
    - centos 7 (CentOS Linux release 7.7.1908 (Core))
+   - debian
 
 
 
