@@ -207,8 +207,8 @@ verifier:
 ## Contributing
 
 If you think you've found a bug or are interested in contributing to
-this project check out `redbeard28.telegraf on Github
-<https://github.com/redbeard28/redbeard28.docker>`_.
+this project check out `ansible-role-docker on Github
+<https://github.com/redbeard28/ansible-role-docker>`_.
 
 
 
