@@ -2,6 +2,7 @@
 galaxy_info:
   author: 'Jeremie CUADRADO'
   description: 'role to install docker-ce daemon (no tcp connection avaiblable)'
+  role_name: docker
   company: 'redbeard-consulting'
 
   license: 'license (GPLv3)'
