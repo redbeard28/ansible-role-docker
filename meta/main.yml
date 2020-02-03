@@ -1,18 +1,18 @@
 ---
 galaxy_info:
-  author: 'Jeremie CUADRADO'
-  description: 'role to install docker-ce daemon (no tcp connection avaiblable)'
+  author: Jeremie CUADRADO
+  description: role to install docker-ce daemon (no tcp connection avaiblable)
   role_name: docker
-  company: 'redbeard-consulting'
+  company: redbeard-consulting
 
-  license: 'license (GPLv3)'
+  license: license (GPLv3)
 
   min_ansible_version: 2.9
   platforms:
     - name: Debian
       versions:
-	- 10
-        - 9
+        - all
+
   galaxy_tags: 
     - docker
     - deployment
